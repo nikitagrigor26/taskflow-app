@@ -1,0 +1,597 @@
+:root {
+  --primary: #2554d7;
+  --primary-dark: #1d4ed8;
+  --secondary: #00c2cb;
+  --accent-peach: #fb923c;
+  --accent-peach-light: #ffedd5;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --bg-page: #f8fafc;
+  --surface: #ffffff;
+  --border: #e2e8f0;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.875rem;
+  --radius-lg: 1.25rem;
+  --shadow-sm: 0 0.125rem 0.5rem rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 0.5rem 1.25rem rgba(15, 23, 42, 0.08);
+}
+
+body {
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   БАЗОВЫЕ СТИЛИ: MOBILE FIRST (Ширина экранов смартфонов до 480px)
+   ========================================================================== */
+
+.app-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Верхняя шапка (Мобильный вид) */
+.mobile-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: var(--surface);
+  border-bottom: 0.0625rem solid var(--border);
+  padding: 0.875rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: 0.05rem;
+}
+
+.brand-logo svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.user-avatar-btn {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background-color: #eff6ff;
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.0625rem solid var(--border);
+}
+
+/* Навигация для десктопа (по умолчанию на мобилках скрыта) */
+.desktop-nav {
+  display: none;
+}
+
+/* Основная рабочая область */
+.main-container {
+  flex: 1;
+  padding: 1rem;
+  padding-bottom: 5.5rem; /* отступ под нижний mobile-bar */
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Логические экраны */
+.screen {
+  display: none;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.screen.active {
+  display: flex;
+}
+
+/* --------------------------------------------------------------------------
+   ЭКРАН 1: Авторизация / Приветствие
+   -------------------------------------------------------------------------- */
+.auth-card {
+  background-color: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1.25rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.auth-hero {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.auth-hero h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.auth-hero p {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.form-group label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.form-group input {
+  padding: 0.875rem 1rem;
+  border: 0.09375rem solid var(--border);
+  border-radius: var(--radius-md);
+  background-color: var(--bg-page);
+  font-size: 0.9375rem;
+  min-height: 2.75rem; /* touch-target >= 44px */
+}
+
+.form-group input:focus {
+  border-color: var(--primary);
+  background-color: var(--surface);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  min-height: 2.75rem;
+}
+
+.checkbox-label input {
+  width: 1.125rem;
+  height: 1.125rem;
+  accent-color: var(--primary);
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: #ffffff;
+  padding: 0.875rem 1.25rem;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: 1rem;
+  text-align: center;
+  min-height: 2.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0.25rem 0.75rem rgba(37, 84, 215, 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   ЭКРАН 2: Главная лента задач (Dashboard)
+   -------------------------------------------------------------------------- */
+.dashboard-summary {
+  background-color: var(--surface);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 0.0625rem solid var(--border);
+}
+
+.summary-text h2 {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.summary-text p {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.badge-counter {
+  background-color: #eff6ff;
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 2rem;
+}
+
+/* Горизонтальный скролл чипов-фильтров */
+.chips-slider {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+  scrollbar-width: none;
+}
+
+.chips-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.chip-item {
+  padding: 0.5rem 1.125rem;
+  border-radius: 2rem;
+  background-color: var(--surface);
+  border: 0.0625rem solid var(--border);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  white-space: nowrap;
+  min-height: 2.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.chip-item.active {
+  background-color: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+}
+
+/* Карточки задач */
+.tasks-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.task-item-card {
+  background-color: var(--surface);
+  border: 0.0625rem solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.task-checkbox-wrap {
+  min-width: 1.5rem;
+  min-height: 2.75rem; /* Зона клика */
+  display: flex;
+  align-items: center;
+}
+
+.task-checkbox-wrap input {
+  width: 1.375rem;
+  height: 1.375rem;
+  accent-color: var(--secondary);
+  cursor: pointer;
+}
+
+.task-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.task-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.task-meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: flex;
+  gap: 0.75rem;
+}
+
+.category-tag {
+  align-self: flex-start;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+}
+
+.tag-study { background-color: #eff6ff; color: var(--primary); }
+.tag-sport { background-color: var(--accent-peach-light); color: var(--accent-peach); }
+
+/* Выполненное состояние */
+.task-item-card.completed {
+  opacity: 0.65;
+}
+
+.task-item-card.completed .task-title {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+/* Плавающая кнопка добавления FAB */
+.fab-add {
+  position: fixed;
+  bottom: 5rem;
+  right: 1.25rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background-color: var(--primary);
+  color: #ffffff;
+  font-size: 1.75rem;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0.375rem 1rem rgba(37, 84, 215, 0.4);
+  z-index: 40;
+}
+
+/* --------------------------------------------------------------------------
+   ЭКРАН 3: Детализация задачи / Подзадачи
+   -------------------------------------------------------------------------- */
+.details-card {
+  background-color: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  border: 0.0625rem solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.details-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.details-desc {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.priority-switch-grid {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.priority-pill {
+  flex: 1;
+  text-align: center;
+  padding: 0.625rem 0.25rem;
+  border-radius: var(--radius-sm);
+  border: 0.0625rem solid var(--border);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  min-height: 2.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.priority-pill.active {
+  background-color: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+}
+
+.checklist-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.checklist-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.checklist-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: var(--bg-page);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  min-height: 2.75rem;
+}
+
+.checklist-row input {
+  width: 1.25rem;
+  height: 1.25rem;
+  accent-color: var(--secondary);
+}
+
+.btn-secondary-action {
+  background-color: var(--secondary);
+  color: #ffffff;
+  padding: 0.875rem 1.25rem;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  text-align: center;
+  min-height: 2.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --------------------------------------------------------------------------
+   Нижний мобильный навбар (Mobile Tab-Bar)
+   -------------------------------------------------------------------------- */
+.mobile-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4.25rem;
+  background-color: var(--surface);
+  border-top: 0.0625rem solid var(--border);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 50;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.nav-tab-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--text-muted);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  min-width: 3.75rem;
+  min-height: 2.75rem;
+  justify-content: center;
+}
+
+.nav-tab-btn.active {
+  color: var(--primary);
+}
+
+.nav-tab-btn svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* ==========================================================================
+   МЕДИА-ЗАПРОСЫ: ПЛАНШЕТЫ И ДЕСКТОП (Breakpoint >= 768px)
+   ========================================================================== */
+
+@media (min-width: 768px) {
+  .mobile-header {
+    display: none;
+  }
+
+  .mobile-bottom-nav {
+    display: none;
+  }
+
+  .fab-add {
+    display: none;
+  }
+
+  .app-wrapper {
+    flex-direction: row;
+  }
+
+  /* Постоянный левый сайдбар на больших экранах */
+  .desktop-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 16rem;
+    background-color: var(--surface);
+    border-right: 0.0625rem solid var(--border);
+    padding: 1.75rem 1.25rem;
+    min-height: 100vh;
+    position: sticky;
+    top: 0;
+  }
+
+  .sidebar-top {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .desktop-nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .desktop-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+
+  .desktop-nav-item:hover,
+  .desktop-nav-item.active {
+    background-color: #eff6ff;
+    color: var(--primary);
+  }
+
+  .main-container {
+    padding: 2.5rem 3rem;
+    max-width: 64rem;
+    margin: 0 auto;
+    width: calc(100% - 16rem);
+  }
+
+  /* Двухколоночный сплит для экрана авторизации на десктопе */
+  #screen-auth {
+    max-width: 32rem;
+    margin: 4rem auto;
+  }
+
+  /* Трехколоночная или модульная сетка дашборда на десктопе */
+  .tasks-stack {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+    gap: 1rem;
+  }
+
+  .details-card {
+    max-width: 44rem;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+}
+
+/* ==========================================================================
+   БОЛЬШИЕ ДЕСКТОПЫ (Breakpoint >= 1280px)
+   ========================================================================== */
+
+@media (min-width: 1280px) {
+  .main-container {
+    max-width: 75rem;
+    padding: 3rem 4rem;
+  }
+}

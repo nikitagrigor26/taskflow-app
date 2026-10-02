@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <!-- Обязательный метатег Viewport для мобильных устройств по заданию -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>TaskFlow — Мобильный органайзер задач</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="app-wrapper">
+
+    <!-- Верхний хедер для мобильных экранов -->
+    <header class="mobile-header">
+      <a href="#" class="brand-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        TASKFLOW
+      </a>
+      <button class="user-avatar-btn" data-target="screen-details" aria-label="Открыть профиль">TF</button>
+    </header>
+
+    <!-- Постоянный навигационный сайдбар (Десктоп) -->
+    <aside class="desktop-nav">
+      <div class="sidebar-top">
+        <a href="#" class="brand-logo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          TASKFLOW
+        </a>
+        <nav class="desktop-nav-menu">
+          <button class="desktop-nav-item active" data-target="screen-dashboard">Задачи на день</button>
+          <button class="desktop-nav-item" data-target="screen-details">Детализация задачи</button>
+          <button class="desktop-nav-item" data-target="screen-auth">Авторизация</button>
+        </nav>
+      </div>
+      <div class="sidebar-bottom">
+        <p style="font-size: 0.8125rem; color: var(--text-muted);">TaskFlow v1.0.5</p>
+      </div>
+    </aside>
+
+    <!-- Основной контентный блок -->
+    <main class="main-container">
+
+      <!-- ===================================================================
+           ЛОГИЧЕСКИЙ ЭКРАН 1: Авторизация (Sign In)
+           =================================================================== -->
+      <section id="screen-auth" class="screen">
+        <div class="auth-card">
+          <div class="auth-hero">
+            <h1>Рады видеть снова</h1>
+            <p>Войдите для синхронизации ваших дел и планов</p>
+          </div>
+
+          <form onsubmit="event.preventDefault();" style="display:flex; flex-direction:column; gap:1rem;">
+            <div class="form-group">
+              <label for="email-field">Email</label>
+              <input type="email" id="email-field" placeholder="student@taskflow.io" required>
+            </div>
+
+            <div class="form-group">
+              <label for="password-field">Пароль</label>
+              <input type="password" id="password-field" placeholder="••••••••" required>
+            </div>
+
+            <div class="form-actions">
+              <label class="checkbox-label">
+                <input type="checkbox"> Запомнить меня
+              </label>
+              <a href="#" style="color:var(--primary); font-weight:600;">Забыли?</a>
+            </div>
+
+            <button type="submit" class="btn-primary" data-target="screen-dashboard">Войти в TaskFlow</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           ЛОГИЧЕСКИЙ ЭКРАН 2: Главная лента задач (Dashboard)
+           =================================================================== -->
+      <section id="screen-dashboard" class="screen active">
+        <!-- Сводка прогресса дня -->
+        <article class="dashboard-summary">
+          <div class="summary-text">
+            <h2>Сегодня, 18 октября</h2>
+            <p>Выполнено 2 из 3 задач</p>
+          </div>
+          <span class="badge-counter">2 / 3</span>
+        </article>
+
+        <!-- Горизонтальные чипы категорий -->
+        <nav class="chips-slider" aria-label="Фильтры категорий">
+          <button class="chip-item active">Все дела</button>
+          <button class="chip-item">Учеба</button>
+          <button class="chip-item">Спорт</button>
+          <button class="chip-item">Личное</button>
+        </nav>
+
+        <!-- Стек карточек задач -->
+        <div class="tasks-stack">
+          <!-- Карточка 1 -->
+          <article class="task-item-card">
+            <div class="task-checkbox-wrap">
+              <input type="checkbox" aria-label="Отметить выполненной">
+            </div>
+            <div class="task-body" data-target="screen-details" style="cursor:pointer;">
+              <span class="category-tag tag-study">УЧЕБА</span>
+              <h3 class="task-title">Сдать ЛР № 5 по мобильной верстке</h3>
+              <div class="task-meta">
+                <span>Сегодня, 23:59</span>
+                <span>• 3 подпункта</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Карточка 2 -->
+          <article class="task-item-card">
+            <div class="task-checkbox-wrap">
+              <input type="checkbox" aria-label="Отметить выполненной">
+            </div>
+            <div class="task-body">
+              <span class="category-tag tag-sport">СПОРТ</span>
+              <h3 class="task-title">Вечерняя кардио-тренировка 5 км</h3>
+              <div class="task-meta">
+                <span>20:00</span>
+                <span>• Высокий приоритет</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Карточка 3 (Завершенная) -->
+          <article class="task-item-card completed">
+            <div class="task-checkbox-wrap">
+              <input type="checkbox" checked aria-label="Отметить выполненной">
+            </div>
+            <div class="task-body">
+              <span class="category-tag tag-study">УЧЕБА</span>
+              <h3 class="task-title">Составить спецификацию ТЗ</h3>
+              <div class="task-meta">
+                <span>Завершено в 14:15</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Кнопка быстрого добавления (FAB) -->
+        <button class="fab-add" aria-label="Добавить задачу">+</button>
+      </section>
+
+      <!-- ===================================================================
+           ЛОГИЧЕСКИЙ ЭКРАН 3: Детализация задачи (Task Details)
+           =================================================================== -->
+      <section id="screen-details" class="screen">
+        <article class="details-card">
+          <div class="details-header">
+            <span class="category-tag tag-study">УЧЕБНЫЙ ПРОЕКТ</span>
+            <span style="font-size:0.8125rem; color:var(--text-muted);">Дедлайн: 23:59</span>
+          </div>
+
+          <div>
+            <h2 class="details-title">Сдать ЛР № 5 по мобильной верстке</h2>
+            <p class="details-desc">
+              Реализовать 3 адаптивных экрана по методологии Mobile First, подготовить семантическую разметку и провести минификацию CSS/JS файлов.
+            </p>
+          </div>
+
+          <div>
+            <h4 style="font-size:0.875rem; margin-bottom:0.5rem;">Приоритет выполнения</h4>
+            <div class="priority-switch-grid">
+              <button class="priority-pill active">Высокий</button>
+              <button class="priority-pill">Обычный</button>
+              <button class="priority-pill">Низкий</button>
+            </div>
+          </div>
+
+          <div class="checklist-container">
+            <h4 class="checklist-title">Чек-лист этапов</h4>
+            <label class="checklist-row">
+              <input type="checkbox" checked>
+              <span style="text-decoration:line-through; color:var(--text-muted);">Сброс стилей (CSS Reset)</span>
+            </label>
+            <label class="checklist-row">
+              <input type="checkbox" checked>
+              <span style="text-decoration:line-through; color:var(--text-muted);">Адаптивная резиновая верстка (rem/vw)</span>
+            </label>
+            <label class="checklist-row">
+              <input type="checkbox">
+              <span>Минификация production-файлов</span>
+            </label>
+          </div>
+
+          <button class="btn-secondary-action" data-target="screen-dashboard">✓ Сохранить и вернуться</button>
+        </article>
+      </section>
+
+    </main>
+
+    <!-- Нижняя мобильная панель навигации (Bottom Bar) -->
+    <nav class="mobile-bottom-nav" aria-label="Мобильная навигация">
+      <button class="nav-tab-btn active" data-target="screen-dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+        </svg>
+        Задачи
+      </button>
+
+      <button class="nav-tab-btn" data-target="screen-details">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+          <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+        </svg>
+        Детали
+      </button>
+
+      <button class="nav-tab-btn" data-target="screen-auth">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+        </svg>
+        Профиль
+      </button>
+    </nav>
+
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
